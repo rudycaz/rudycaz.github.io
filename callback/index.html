@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SpaceTok Authorization</title>
+</head>
+<body>
+  <h2>SpaceTok TikTok Authorization</h2>
+  <p id="status">Processing authorization...</p>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get("code");
+    const error = params.get("error");
+
+    if (error) {
+      document.getElementById("status").textContent =
+        "Authorization failed: " + error;
+    } else if (code) {
+      document.getElementById("status").textContent =
+        "Authorization received. Return to SpaceTok to complete setup.";
+      // A local OAuth client must securely receive this code
+      // and exchange it for tokens.
+    } else {
+      document.getElementById("status").textContent =
+        "No authorization code received.";
+    }
+  </script>
+</body>
+</html>
